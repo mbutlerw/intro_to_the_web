@@ -1,18 +1,25 @@
+require 'shotgun'
 require 'sinatra'
 set :session_secret, 'super secret'
 
 get '/' do
-  "Hello World"
+  "Hello!"
 end
 
 get '/secret' do
-  "shhhhh"
+  "This is a secret"
 end
 
-get '/cat' do
+get '/random-cat' do
+  @name = ["Amigo","Oscar","Viking"].sample
   erb(:index)
 end
 
-get '/cow' do
-  'moo'
+post '/named-cat' do
+  @name = params[:name]
+  erb(:index)
+end
+
+get '/cat-form' do
+  erb(:cat_form)
 end
